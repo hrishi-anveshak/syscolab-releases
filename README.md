@@ -44,34 +44,4 @@ The installer detects your OS/architecture, downloads the matching binary from t
    panel on the right (uptime/load, users, memory/disk, network throughput, top processes).
 4. Press `t` any time to change the color theme.
 
-## Building your own binary from source
-
-Source is private. If you have access, clone it and see `BUILD.md`:
-
-```sh
-git clone https://github.com/hrishi-anveshak/syscolab
-cd syscolab
-python3 -m venv .buildenv && source .buildenv/bin/activate
-pip install -e . pyinstaller
-pyinstaller --onefile --name syscolab --paths src \
-  --collect-all textual --collect-all pyte \
-  --add-data "src/syscolab/styles.tcss:syscolab" \
-  entry.py
-```
-
-## Publishing a new release (maintainer)
-
-Build on each OS (PyInstaller doesn't cross-compile — see `BUILD.md` in the source repo), name the
-binaries to match what `install.sh`/`install.ps1` look for, then:
-
-```sh
-gh release create v0.1.1 \
-  syscolab-linux-x86_64 \
-  syscolab-macos-arm64 \
-  syscolab-windows-x86_64.exe \
-  --repo hrishi-anveshak/syscolab-releases \
-  --title "v0.1.1" \
-  --notes "What changed..."
-```
-
-The installers always fetch the `latest` tag, so nothing else needs updating.
+\
